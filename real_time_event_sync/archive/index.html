@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Event Sync</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Live Events Dashboard</h2>
+
+<div id="eventList"></div>
+
+<h3>Add Event</h3>
+<input type="text" id="eventName" placeholder="Event Name">
+<input type="date" id="eventDate">
+<input type="time" id="eventTime">
+<select id="eventStatus">
+    <option>Scheduled</option>
+    <option>Ongoing</option>
+    <option>Completed</option>
+</select>
+<button onclick="addEvent()">Add Event</button>
+
+<script src="script.js"></script>
+</body>
+</html>

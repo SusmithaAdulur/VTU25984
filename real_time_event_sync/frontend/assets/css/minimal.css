@@ -1,0 +1,654 @@
+/* Minimal stylesheet for dashboard, login, and events pages */
+
+/* ===== Global ===== */
+/* set a readable base font and line spacing */
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Main container structure */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.navbar .logo {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #666;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links a.active {
+    color: #4CAF50;
+    background-color: #e8f5e9;
+    border-radius: 3px;
+}
+
+.navbar .live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+    color: #4CAF50;
+}
+
+.navbar .live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.navbar .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.navbar .hamburger span {
+    width: 20px;
+    height: 2px;
+    background-color: #333;
+}
+
+/* Sign Out button in navbar */
+.nav-logout {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 12px;
+}
+.nav-logout:hover {
+    background-color: #c0392b;
+}
+
+/* Content wrapper - flex to take remaining space */
+.content-wrapper {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+}
+
+.content-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* headings slightly larger for clarity with distinct color */
+h1 { font-size: 1.5em; margin: 0.5em 0; color: #333; }
+h2 { font-size: 1.3em; margin: 0.5em 0; color: #333; }
+h3 { font-size: 1.1em; margin: 0.5em 0; color: #333; }
+
+/* ===== Sidebar ===== */
+/* light background, padding and vertical list styling */
+#sidebar {
+    background-color: #f2f2f2;
+    padding: 8px;
+}
+#sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#sidebar li {
+    margin-bottom: 6px;
+}
+
+/* ===== Layout ===== */
+/* dashboard main layout using flex instead of tables */
+.dashboard-layout {
+    display: flex;
+    width: 100%;
+    gap: 0;
+}
+
+/* header styling */
+.dashboard-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dashboard-header .logo h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.dashboard-header .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.dashboard-header .user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+
+/* sidebar occupies fixed width, main grows */
+#sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background-color: #f5f5f5;
+    padding: 12px 8px;
+}
+#sidebar nav ul li button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: #333;
+}
+#sidebar nav ul li button:hover {
+    background-color: #e0e0e0;
+}
+
+#mainContent {
+    flex: 1;
+    padding: 8px; /* spacing around main area */
+}
+
+/* simple wrapper spacing for dashboard and forms */
+.dashboard, .auth-container {
+    padding: 10px;
+}
+
+/* ===== Buttons ===== */
+/* green background, white text, padding, hover effect */
+button, .action-link {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+}
+button:hover, .action-link:hover {
+    background-color: #45a049;
+}
+
+/* logout button is a destructive action, highlight accordingly */
+.btn-logout {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-logout:hover {
+    background-color: #c0392b;
+}
+
+/* simple add event button for admin panel */
+.btn-add {
+    background-color: #3498db;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+.btn-add:hover {
+    background-color: #2980b9;
+}
+
+/* ===== Tables ===== */
+/* make event tables clean and readable; still used on index.php and other pages */
+#liveEventsTable, #upcomingEventsTable, #eventsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+#liveEventsTable th, #liveEventsTable td,
+#upcomingEventsTable th, #upcomingEventsTable td,
+#eventsTable th, #eventsTable td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+}
+/* header row slightly colored */
+#liveEventsTable thead, #upcomingEventsTable thead, #eventsTable thead {
+    background-color: #e0e0e0;
+}
+#liveEventsTable tbody tr:nth-child(odd),
+#upcomingEventsTable tbody tr:nth-child(odd),
+#eventsTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Admin events table styling - professional layout for all events */
+.events-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+.events-admin-table th,
+.events-admin-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.events-admin-table thead {
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+.events-admin-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+.events-admin-table tbody tr.no-events {
+    text-align: center;
+    font-style: italic;
+    background-color: #ffffff;
+}
+
+/* ===== Forms ===== */
+/* simple borders and padding */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"] {
+    border: 1px solid #ccc;
+    padding: 6px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* margins for form groups for spacing */
+.form-group {
+    margin-bottom: 12px;
+}
+
+/* ===== Main Content / Sections ===== */
+/* light spacing between sections */
+.welcome-section,
+.overview-section,
+.stats-section,
+#upcomingEvents {
+    margin-bottom: 16px;
+}
+/* Add top padding to welcome section to prevent overlap with absolutely positioned Live Sync indicator */
+.welcome-section {
+    padding-top: 32px;
+}
+
+/* ===== Links ===== */
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+a:hover {
+    color: #45a049;
+}
+
+/* Card/box style for dashboard sections */
+/* basic bordered boxes with padding, margin, light background */
+.box,
+.event-box,
+.notification-box,
+.action-box,
+.summary-box {
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin: 8px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* layout for main dashboard content: centre the only column left after table removal */
+.dashboard-content {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+/* removed .events-column; dashboard no longer shows an events table */
+.form-column {
+    flex: 1 0 auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* generic card used for events table and forms */
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* table styles for legacy pages remain, but dashboard no longer uses them */
+/* live events table has been removed from dashboard markup */
+
+/* form layout adjustments */
+.time-fields {
+    display: flex;
+    gap: 12px;
+}
+.time-fields .form-group {
+    flex: 1;
+}
+
+/* status overview cards */
+.status-overview-cards {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.status-card {
+    flex: 1;
+    background: #f0fdf4;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+}
+.status-card h4 {
+    margin: 0;
+    font-size: 1.2em;
+}
+.status-card p {
+    margin-top: 4px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* responsive adjustments for dashboard-content */
+@media (max-width: 768px) {
+    .dashboard-content {
+        flex-direction: column;
+    }
+    .form-column {
+        flex: 1 0 auto;
+        width: 100%;
+    }
+    #sidebar {
+        width: 100%;
+    }
+}
+
+/* optional heading within a box could be slightly larger */
+.event-box h5,
+.notification-box h5,
+.action-box h5,
+.summary-box h5 {
+    margin-top: 0;
+}
+
+/* quick action boxes should sit side-by-side if multiple are present */
+.action-box {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: top;
+}
+
+/* Live sync status indicator */
+#mainContent { position: relative; }
+/* Live Sync indicator positioned at top-left of main content area; welcome section has padding-top to prevent overlap */
+#liveSyncStatus {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-weight: bold;
+    color: green;
+}
+#liveSyncStatus .dot {
+    height: 8px;
+    width: 8px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+/* Status overview section items */
+#statusOverview {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+#statusOverview .status-item {
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    flex: 1;
+    text-align: center;
+}
+
+/* layout for event entries within status items */
+.event-list {
+    margin-top: 8px;
+    text-align: left; /* align date/time details neatly */
+}
+.event-entry {
+    border-top: 1px solid #ddd;
+    padding: 4px 0;
+}
+.event-entry p {
+    margin: 2px 0;
+    font-size: 0.9em;
+}
+.event-entry.no-events {
+    text-align: center;
+    font-style: italic;
+    border-top: none;
+}
+
+/* Simple event names list styling */
+#eventNamesList {
+    list-style: none;
+    padding-left: 0;
+    margin: 8px 0;
+}
+#eventNamesList li {
+    padding: 6px 8px;
+    margin: 4px 0;
+    border-left: 4px solid #4CAF50;
+    background-color: #f9f9f9;
+}
+#eventNamesList li.no-events {
+    border-left: none;
+    font-style: italic;
+    color: #999;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+/* minimal spacing helpers */
+hr { margin: 1em 0; border: none; border-top: 1px solid #ccc; }
+
+/* end of minimal.css */
+
+/*
+    Safety: disable decorative pseudo-elements that might inject large shapes
+    This prevents ::before / ::after produced decorations from overlapping the page.
+*/
+.content-wrapper::before, .content-wrapper::after,
+.content-inner::before, .content-inner::after,
+.dashboard::before, .dashboard::after,
+#eventsList::before, #eventsList::after,
+#eventsTable::before, #eventsTable::after,
+#eventNamesList::before, #eventNamesList::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Event Overview: clean textual section replacing decorative bottom shapes */
+.event-overview {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    margin-top: 24px;
+    color: #111827;
+    line-height: 1.6;
+}
+
+/* ensure no absolute/fixed positioning remains on overview children */
+.event-overview * { position: static !important; }
+
+/* Add layout styling for add_event.php */
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.dashboard-left {
+    flex: 1;
+}
+
+.dashboard-right {
+    flex: 1;
+}
+
+.sidebar-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+.dashboard-title {
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+}
+
+.form-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+/* ===== FIX: Prevent giant emoji / event card expansion ===== */
+
+.events-list {
+    font-size: 16px !important;
+}
+
+.event-card {
+    font-size: 16px !important;
+    background: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.event-card h4 {
+    font-size: 18px !important;
+    margin: 0 0 5px 0;
+}
+
+.event-card p,
+.event-card small {
+    font-size: 14px !important;
+}
+/* ===== FIX ADD EVENT PAGE LAYOUT ===== */
+
+.dashboard {
+    display: flex;
+    gap: 24px;
+    justify-content: center; /* centre the main content */
+    align-items: flex-start;
+}
+
+/* dashboard-left removed on index.php; main area (dashboard-right) becomes primary */
+.dashboard-right {
+    width: 100%;
+    max-width: 760px;
+}
+
+.events-list {
+    margin-top: 20px;
+}
+
+.event-card {
+    background: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+.event-card-meta-item svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
